@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title>「私達はぐでたま大好き！」</title>
+	<style type="text/css">
+		body {
+			font-family: Helvetica;
+		}
+		
+		a {
+			color:#ed9c0f;
+		}
+		
+		a:hover {
+			color:#fecc34;
+		}
+		
+		header, footer {
+			text-align:center;
+			color:#666;			
+		}
+
+		header {
+			font-size:300%;
+		}
+				
+		footer {
+			font-size:75%;
+		}
+		
+		header h1 {
+			margin:0 auto;
+			transform:rotate(-5deg);
+		}
+		
+		#gudetama, #gudetama-trace {
+			display:block;
+			width:80%;
+			margin:10px auto;
+			padding:10px;			
+		}
+				
+		ul {
+			display:block;
+			margin:0 auto;
+			width:25%;
+			padding:0;
+			text-align:center;
+		}
+		
+		ul li {
+			text-align:center;
+			display:inline-block;
+		}
+		
+		li+li:before {
+			content:' ・ ';
+		}
+	</style>
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/vivus/dist/vivus.min.js"></script>
+	
+	<script type="text/javascript">
+	$.fn.swapSVG = function(svg_path) {
+		this.attr('src', svg_path);
+		return this;
+	};	
+	
+	$(function() {
+		$('[data-swap-url]').on('click', function(e) {
+			e.preventDefault();
+					
+			var svg_path = $(this).attr('data-swap-url');
+			
+			if(svg_path != $('#gudetama').attr('src')) {
+				$('#gudetama').fadeOut('fast', function() {
+					$(this).swapSVG(svg_path).fadeIn();
+				});				
+			}
+		});
+	});
+	</script>
+</head>
+
+<body>
+	<header>
+		<h1>ぐでたま！</h1>
+	</header>
+	
+	<ul>
+		<li><a href="#" data-swap-url="svg/gudetama-color.svg">カラー</a></li>
+		<li><a href="#" data-swap-url="svg/gudetama-trace.svg">トレース</a></li>		
+	</ul>
+	
+	<img id="gudetama" src="svg/gudetama-color.svg">
+	
+	<footer>
+		<a href="http://timspangler.com">ティモシー・スパングラー</a></p>
+	</footer>
+</body>
+</html>
